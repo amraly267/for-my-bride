@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Expires" content="0">
+<title>A little surprise for you ❤️</title>
+
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap');
+
+*{box-sizing:border-box;margin:0;padding:0}
+
+html,body{
+    width:100%;
+    min-height:auto;
+    /* overscroll-behavior:none; */
+}
+
+body{
+    min-height:100vh;
+    overflow-x:hidden;
+    font-family:"Cairo",sans-serif;
+    color:white;
+    background:
+        radial-gradient(circle at 50% 35%,#562132 0%,#28121c 45%,#09070a 100%);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    position:relative;
+    padding:20px;
+}
+
+body::before{
+    content:"";
+    position:fixed;
+    width:600px;height:600px;
+    border-radius:50%;
+    background:radial-gradient(circle,rgba(255,110,150,.12),transparent 70%);
+    pointer-events:none;
+}
+
+.bg-heart{
+    position:fixed;
+    color:rgba(255,160,190,.06);
+    font-size:80px;
+    pointer-events:none;
+    animation:float 8s ease-in-out infinite;
+}
+.h1{left:6%;top:10%}
+.h2{right:6%;top:20%;animation-delay:2s}
+.h3{left:15%;bottom:8%;animation-delay:4s}
+.h4{right:12%;bottom:6%;animation-delay:1s}
+
+@keyframes float{
+    0%,100%{transform:translateY(0) rotate(-10deg)}
+    50%{transform:translateY(-25px) rotate(10deg)}
+}
+
+.container{
+    width:100%;
+    max-width:650px;
+    position:relative;
+    z-index:5;
+    text-align:center;
+}
+
+.intro{margin-bottom:15px;transition:.5s}
+.intro h1{
+    font-family:"Playfair Display",serif;
+    font-size:34px;
+    margin-bottom:8px;
+}
+.intro p{color:#e8b8c8;font-size:15px}
+
+.attempt{color:#d99bad;font-size:13px;margin-bottom:5px}
+
+.lock-area{
+    height:280px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+
+.lock{
+    width:145px;height:170px;
+    position:relative;
+    cursor:pointer;
+    user-select:none;
+    filter:drop-shadow(0 0 25px rgba(255,70,120,.3));
+}
+
+.lock-body{
+    position:absolute;
+    bottom:10px;left:10px;
+    width:125px;height:105px;
+    border-radius:20px;
+    background:linear-gradient(145deg,#e0b85e,#8d5b18);
+    border:4px solid #f5d477;
+    box-shadow:inset 0 5px 10px rgba(255,255,255,.25),0 15px 30px rgba(0,0,0,.45);
+}
+
+.lock-body::before{
+    content:"";
+    position:absolute;
+    width:25px;height:25px;
+    background:#3a2110;
+    border-radius:50%;
+    top:38px;left:46px;
+    box-shadow:0 0 0 5px #d8ad58;
+}
+
+.lock-body::after{
+    content:"";
+    position:absolute;
+    width:8px;height:25px;
+    background:#d8ad58;
+    left:54px;top:58px;
+    border-radius:5px;
+}
+
+.lock-shackle{
+    position:absolute;
+    width:75px;height:80px;
+    border:16px solid #d4a84f;
+    border-bottom:0;
+    border-radius:45px 45px 0 0;
+    top:5px;left:35px;
+}
+
+.shake{animation:shake .45s}
+@keyframes shake{
+    0%{transform:translateX(0) rotate(0)}
+    15%{transform:translateX(-14px) rotate(-6deg)}
+    30%{transform:translateX(14px) rotate(6deg)}
+    45%{transform:translateX(-12px) rotate(-5deg)}
+    60%{transform:translateX(12px) rotate(5deg)}
+    75%{transform:translateX(-6px)}
+    100%{transform:translateX(0) rotate(0)}
+}
+
+.hint{
+    color:#f0c5d0;
+    font-size:14px;
+    animation:pulse 1.5s infinite;
+}
+@keyframes pulse{50%{opacity:.4}}
+
+.popup-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(5,3,6,.72);
+    backdrop-filter:blur(7px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:20px;
+    z-index:100;
+    opacity:0;
+    visibility:hidden;
+    transition:.3s;
+}
+.popup-overlay.show{opacity:1;visibility:visible}
+
+.popup{
+    width:min(430px,100%);
+    background:linear-gradient(145deg,#35141f,#1d0d15);
+    border:1px solid rgba(255,190,210,.25);
+    border-radius:28px;
+    padding:32px 25px 27px;
+    text-align:center;
+    box-shadow:0 30px 90px rgba(0,0,0,.6),0 0 40px rgba(220,70,110,.12);
+    transform:scale(.8) translateY(20px);
+    transition:.35s;
+}
+.popup-overlay.show .popup{transform:scale(1) translateY(0)}
+
+.popup-emoji{
+    font-size:55px;
+    display:block;
+    margin-bottom:12px;
+    animation:popupEmoji 1s ease;
+}
+@keyframes popupEmoji{
+    0%{transform:scale(.3) rotate(-20deg)}
+    70%{transform:scale(1.15) rotate(5deg)}
+    100%{transform:scale(1) rotate(0)}
+}
+
+.popup-text{
+    color:#f5d8df;
+    line-height:2;
+    font-size:16px;
+    margin-bottom:22px;
+}
+
+.btn{
+    border:1px solid rgba(255,180,200,.45);
+    background:linear-gradient(135deg,#8e284e,#c24b70);
+    color:white;
+    padding:12px 25px;
+    border-radius:50px;
+    font-family:inherit;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    transition:.25s;
+}
+.btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(194,75,112,.35);
+}
+.btn:active{transform:scale(.95)}
+
+.card-wrapper{
+    display:none;
+    width:100%;
+    animation:cardAppear 1s ease forwards;
+}
+@keyframes cardAppear{
+    from{opacity:0;transform:translateY(50px) scale(.88)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+
+.greeting-card{
+    width:100%;
+    max-width:590px;
+    height:auto;
+    min-height:auto;
+    margin:auto;
+    position:relative;
+    overflow:hidden;
+    border-radius:30px;
+    background:
+        radial-gradient(circle at 50% 25%,#fffefa 0%,#fff7ed 55%,#f4dfcd 100%);
+    color:#542b35;
+    border:2px solid #d5ad6d;
+    box-shadow:0 30px 90px rgba(0,0,0,.55),inset 0 0 0 8px rgba(213,173,109,.12);
+    padding:35px 25px 30px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+}
+
+.card-corner{
+    position:absolute;
+    font-size:50px;
+    color:#c79652;
+    opacity:.45;
+}
+.corner-top-left{top:10px;left:15px}
+.corner-top-right{top:10px;right:15px}
+.corner-bottom-left{bottom:10px;left:15px}
+.corner-bottom-right{bottom:10px;right:15px}
+
+.flower{
+    position:absolute;
+    color:#d69aab;
+    opacity:.45;
+    font-size:25px;
+}
+.flower-1{left:35px;top:230px}
+.flower-2{right:35px;top:250px}
+.flower-3{left:55px;bottom:125px;font-size:18px}
+.flower-4{right:55px;bottom:135px;font-size:18px}
+
+.card-title{
+    font-family:"Playfair Display",serif;
+    font-size:30px;
+    color:#7d3048;
+    margin-bottom:3px;
+}
+
+.decor-line{
+    width:130px;
+    height:2px;
+    margin:12px auto 5px;
+    background:linear-gradient(90deg,transparent,#c99b59,transparent);
+    position:relative;
+}
+.decor-line::after{
+    content:"♥";
+    position:absolute;
+    left:50%;top:50%;
+    transform:translate(-50%,-50%);
+    background:#fff8ef;
+    color:#b35b72;
+    padding:0 8px;
+    font-size:12px;
+}
+
+/* =====================================================
+   MAWLID BRIDE
+===================================================== */
+
+.mawlid-bride{
+    width:250px;
+    height:250px;
+    position:relative;
+    flex-shrink:0;
+    margin:8px auto 5px;
+    animation:brideFloat 3.5s ease-in-out infinite;
+    filter:drop-shadow(0 15px 15px rgba(90,35,50,.15));
+    display:flex;
+    align-items:flex-end;
+    justify-content:center;
+}
+
+/* =====================================================
+   BRIDE LEGS & SHOES
+===================================================== */
+
+.bride-leg{
+    position:absolute;
+    z-index:0;
+    bottom:8px;
+    width:16px;
+    height:48px;
+    background:linear-gradient(90deg,#efb991,#ffd0b0,#e8a77f);
+    border-radius:0 0 10px 10px;
+    box-shadow:inset -2px 0 2px rgba(130,65,45,.12);
+}
+
+.bride-leg-left{
+    left:105px;
+    transform:rotate(3deg);
+}
+
+.bride-leg-right{
+    right:105px;
+    transform:rotate(-3deg);
+}
+
+/* Elegant little shoes */
+.bride-shoe{
+    position:absolute;
+    z-index:1;
+    bottom:1px;
+    width:42px;
+    height:18px;
+    background:linear-gradient(145deg,#7d1f3d,#b73d61);
+    border:2px solid #e7b866;
+    border-radius:18px 18px 8px 8px;
+    box-shadow:0 4px 7px rgba(70,25,35,.22);
+}
+
+.bride-shoe::after{
+    content:"";
+    position:absolute;
+    width:10px;
+    height:5px;
+    border-radius:50%;
+    background:#f5d477;
+    left:50%;
+    top:3px;
+    transform:translateX(-50%);
+}
+
+.bride-shoe-left{
+    left:91px;
+    transform:rotate(4deg);
+}
+
+.bride-shoe-right{
+    right:91px;
+    transform:rotate(-4deg);
+}
+
+.mawlid-bride img{
+    position:relative;
+    z-index:2;
+    display:block;
+    width:260px;
+    height:auto;
+    max-width:none;
+    object-fit:contain;
+    pointer-events:none;
+    user-select:none;
+}
+
+@keyframes brideFloat{
+    0%,100%{transform:translateY(0) rotate(-1deg)}
+    50%{transform:translateY(-7px) rotate(1deg)}
+}
+
+.main-message{
+    width:100%;
+    max-width:500px;
+    font-size:22px;
+    line-height:1.8;
+    color:#63313e;
+    text-align:center;
+    margin-top:5px;
+    margin-bottom:20px;
+    min-height:auto;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-direction:column;
+    transition:.3s;
+}
+
+.translation{
+    font-size:12px;
+    color:#b07c87;
+    margin-bottom:10px;
+}
+
+.language-btn{
+    border:1px solid rgba(255,180,200,.45);
+    background:linear-gradient(135deg,#8e284e,#c24b70);
+    color:white;
+    padding:12px 25px;
+    border-radius:50px;
+    font-family:inherit;
+    font-size:14px;
+    cursor:pointer;
+    box-shadow:0 8px 25px rgba(0,0,0,.3);
+    transition:.25s;
+}
+
+.language-btn:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 30px rgba(194,75,112,.35);
+}
+
+.broken .lock-shackle{animation:breakShackle .8s forwards}
+.broken .lock-body{animation:breakBody .8s forwards}
+
+@keyframes breakShackle{
+    0%{transform:rotate(0)}
+    40%{transform:rotate(-10deg) scale(1.1)}
+    100%{
+        transform:translate(-100px,-80px) rotate(-45deg);
+        opacity:0;
+    }
+}
+@keyframes breakBody{
+    0%{transform:scale(1)}
+    30%{transform:scale(1.15)}
+    100%{
+        transform:translate(100px,80px) rotate(35deg);
+        opacity:0;
+    }
+}
+
+.flash{
+    position:fixed;
+    inset:0;
+    background:white;
+    z-index:150;
+    pointer-events:none;
+    animation:flash .5s forwards;
+}
+@keyframes flash{
+    0%{opacity:.9}
+    100%{opacity:0}
+}
+
+.confetti{
+    position:fixed;
+    width:8px;
+    height:14px;
+    top:-20px;
+    z-index:120;
+    animation:fall linear forwards;
+}
+@keyframes fall{
+    to{
+        transform:translateY(110vh) rotate(720deg);
+        opacity:0;
+    }
+}
+
+.flying-heart{
+    position:fixed;
+    pointer-events:none;
+    z-index:125;
+    font-size:25px;
+    animation:flyHeart 2.5s ease-out forwards;
+}
+@keyframes flyHeart{
+    0%{
+        transform:translate(0,0) scale(.5);
+        opacity:1;
+    }
+    100%{
+        transform:translate(calc((var(--x) - .5) * 500px),-400px) scale(1.5);
+        opacity:0;
+    }
+}
+
+@media(max-width:600px){
+    body{padding:12px;align-items:center}
+    .container{width:100%}
+    .intro h1{font-size:26px}
+    .intro p{font-size:13px}
+    .lock-area{height:245px}
+    .popup{padding:28px 20px 24px}
+    .popup-text{font-size:14px}
+
+    .greeting-card{
+        min-height:auto;
+        height:auto;
+        padding:28px 15px 25px;
+        border-radius:25px;
+    }
+
+    .card-title{font-size:24px}
+    .decor-line{margin-top:11px}
+
+    .mawlid-bride{
+        width:210px;
+        height:220px;
+        margin-top:0;
+        margin-bottom:2px;
+    }
+
+    .bride-leg{
+        height:42px;
+        width:14px;
+        bottom:7px;
+    }
+
+    .bride-leg-left{left:88px}
+    .bride-leg-right{right:88px}
+
+    .bride-shoe{
+        width:36px;
+        height:16px;
+        bottom:0;
+    }
+
+    .bride-shoe-left{left:76px}
+    .bride-shoe-right{right:76px}
+
+    .mawlid-bride img{width:220px}
+
+    .main-message{
+        font-size:19px;
+        line-height:1.8;
+        min-height:auto;
+        margin-bottom:15px;
+        padding:0 5px;
+    }
+
+    .language-btn{font-size:12px;padding:10px 20px}
+
+    .flower{display:none}
+    .card-corner{font-size:38px}
+    .corner-top-left{left:8px;top:5px}
+    .corner-top-right{right:8px;top:5px}
+    .corner-bottom-left{left:8px;bottom:5px}
+    .corner-bottom-right{right:8px;bottom:5px}
+}
+
+@media(max-width:380px){
+    body{padding:8px}
+    .greeting-card{
+        min-height:auto;
+        padding:22px 10px 22px;
+    }
+    .card-title{font-size:22px}
+    .mawlid-bride{
+        width:185px;
+        height:200px;
+    }
+    .bride-leg{
+        height:38px;
+        width:13px;
+    }
+
+    .bride-leg-left{left:77px}
+    .bride-leg-right{right:77px}
+
+    .bride-shoe{
+        width:32px;
+        height:14px;
+    }
+
+    .bride-shoe-left{left:65px}
+    .bride-shoe-right{right:65px}
+
+    .mawlid-bride img{width:195px}
+    .main-message{font-size:17px;line-height:1.7;margin-bottom:15px}
+}
+</style>
+</head>
+
+<body>
+
+<div class="bg-heart h1">♥</div>
+<div class="bg-heart h2">♥</div>
+<div class="bg-heart h3">♥</div>
+<div class="bg-heart h4">♥</div>
+
+<div class="container">
+
+<div class="intro" id="intro">
+    <h1>في حاجة مستنياكي ❤️</h1>
+    <p>بس للأسف… مش هينفع أديهالك بسهولة 😜</p>
+</div>
+
+<div class="attempt" id="attempt">المحاولة 1 من 3</div>
+
+<div class="lock-area" id="lockArea">
+    <div class="lock" id="lock" onclick="hitLock()">
+        <div class="lock-shackle"></div>
+        <div class="lock-body"></div>
+    </div>
+</div>
+
+<div class="hint" id="hint" dir="rtl">
+    💥 دوسي على القفل جامد!
+</div>
+
+<div class="card-wrapper" id="cardWrapper">
+
+<div class="greeting-card">
+
+<div class="card-corner corner-top-left">❦</div>
+<div class="card-corner corner-top-right">❦</div>
+<div class="card-corner corner-bottom-left">❦</div>
+<div class="card-corner corner-bottom-right">❦</div>
+
+<div class="flower flower-1">❀</div>
+<div class="flower flower-2">❀</div>
+<div class="flower flower-3">✿</div>
+<div class="flower flower-4">✿</div>
+
+<div class="card-title" dir="ltr">
+    A little surprise for you ❤️
+</div>
+
+<div class="decor-line"></div>
+
+<!-- العروسة الحقيقية المستخرجة من الصورة المرفقة -->
+<div class="mawlid-bride">
+
+    <!-- Legs -->
+    <div class="bride-leg bride-leg-left"></div>
+    <div class="bride-leg bride-leg-right"></div>
+
+    <!-- Shoes -->
+    <div class="bride-shoe bride-shoe-left"></div>
+    <div class="bride-shoe bride-shoe-right"></div>
+
+    <!-- The bride extracted from the supplied image -->
+    <img src="mawlid-bride.png" alt="عروسة المولد">
+
+</div>
+
+<div class="main-message" id="mainMessage" dir="ltr">
+    운명은 나를 너와 만나게 했고
+    너는 내 인생에서 가장 아름다운 운명이 되었어 ❤️
+    <br>
+    생일 축하해, 언제나 나의 신부가 되어줘 🥰
+</div>
+
+<div class="translation" id="translation"></div>
+
+<button class="language-btn" id="languageBtn" onclick="toggleLanguage()">
+    اضغطي هنا لو مش فاهمة بالكوري 😂
+</button>
+
+</div>
+</div>
+</div>
+
+<div class="popup-overlay" id="popupOverlay">
+
+<div class="popup">
+
+<span class="popup-emoji" id="popupEmoji">😂</span>
+
+<div class="popup-text" id="popupText"></div>
+
+<button class="btn" onclick="closePopup()" id="popupButton">
+    أحاول تاني 😤
+</button>
+
+</div>
+</div>
+
+<script>
+let attempt = 1;
+let locked = false;
+let korean = true;
+
+const lock = document.getElementById("lock");
+const lockArea = document.getElementById("lockArea");
+const intro = document.getElementById("intro");
+const attemptText = document.getElementById("attempt");
+const hint = document.getElementById("hint");
+const cardWrapper = document.getElementById("cardWrapper");
+const popupOverlay = document.getElementById("popupOverlay");
+const popupEmoji = document.getElementById("popupEmoji");
+const popupText = document.getElementById("popupText");
+const popupButton = document.getElementById("popupButton");
+const mainMessage = document.getElementById("mainMessage");
+const languageBtn = document.getElementById("languageBtn");
+const translation = document.getElementById("translation");
+
+function hitLock(){
+
+    if(locked) return;
+
+    locked = true;
+
+    lock.classList.remove("shake");
+    void lock.offsetWidth;
+    lock.classList.add("shake");
+
+    setTimeout(()=>{
+
+        if(attempt === 1){
+
+            showPopup(
+                "😂",
+                `
+                إيه ده؟! 😭<br>
+                دي كانت محاولة ولا بتطبطبي عليه؟ 😂<br>
+                القفل حتى محسش بحاجة!
+                `
+            );
+
+        } else if(attempt === 2){
+
+            showPopup(
+                "😭💪",
+                `
+                لا لا لا… كده الموضوع خطر 😂<br>
+                شكلك مش بتاكلي كويس خالص!<br>
+                فين القوة يا بنتي؟ 😭💪
+                `
+            );
+
+        } else {
+
+            breakLock();
+
+        }
+
+    },500);
+}
+
+function showPopup(emoji,text){
+
+    popupEmoji.innerHTML = emoji;
+    popupText.innerHTML = text;
+    popupButton.innerHTML = "أحاول تاني 😤";
+    popupOverlay.classList.add("show");
+}
+
+function closePopup(){
+
+    popupOverlay.classList.remove("show");
+
+    attempt++;
+
+    attemptText.innerText =
+        "المحاولة " + attempt + " من 3";
+
+    locked = false;
+
+    if(attempt === 2){
+        hint.innerHTML = "💥 المرة دي دوسي أقوى!";
+    }
+    else if(attempt === 3){
+        hint.innerHTML = "💣 آخر فرصة… فجّريه يا ريما!";
+    }
+}
+
+popupOverlay.addEventListener("click",function(e){
+    if(e.target === popupOverlay){
+        closePopup();
+    }
+});
+
+function breakLock(){
+
+    locked = true;
+
+    const flash = document.createElement("div");
+    flash.className = "flash";
+    document.body.appendChild(flash);
+
+    lockArea.classList.add("broken");
+
+    hint.style.display = "none";
+    attemptText.style.display = "none";
+    intro.style.display = "none";
+
+    createConfetti();
+    createHearts();
+
+    setTimeout(()=>{
+
+        lockArea.style.display = "none";
+        cardWrapper.style.display = "block";
+
+        window.scrollTo({
+            top:0,
+            behavior:"smooth"
+        });
+
+    },850);
+}
+
+function createConfetti(){
+
+    for(let i=0;i<120;i++){
+
+        const confetti = document.createElement("div");
+
+        confetti.className = "confetti";
+
+        confetti.style.left =
+            Math.random()*100+"vw";
+
+        confetti.style.animationDuration =
+            (2+Math.random()*3)+"s";
+
+        confetti.style.animationDelay =
+            Math.random()*1.5+"s";
+
+        confetti.style.transform =
+            `rotate(${Math.random()*360}deg)`;
+
+        document.body.appendChild(confetti);
+
+        setTimeout(()=>{
+            confetti.remove();
+        },6000);
+    }
+}
+
+function createHearts(){
+
+    const hearts = [
+        "❤️","💗","💖","💕","💞","✨"
+    ];
+
+    for(let i=0;i<45;i++){
+
+        const heart = document.createElement("div");
+
+        heart.className = "flying-heart";
+
+        heart.innerHTML =
+            hearts[
+                Math.floor(
+                    Math.random()*hearts.length
+                )
+            ];
+
+        heart.style.left = "50%";
+        heart.style.top = "50%";
+
+        heart.style.setProperty(
+            "--x",
+            Math.random()
+        );
+
+        heart.style.animationDelay =
+            Math.random()*.8+"s";
+
+        document.body.appendChild(heart);
+
+        setTimeout(()=>{
+            heart.remove();
+        },3500);
+    }
+}
+
+function toggleLanguage(){
+
+    korean = !korean;
+
+    if(korean){
+
+        mainMessage.innerHTML = `
+            운명은 나를 너와 만나게 했고
+            너는 내 인생에서 가장 아름다운 운명이 되었어 ❤️
+            <br>
+            생일 축하해, 언제나 나의 신부가 되어줘 🥰
+        `;
+
+        mainMessage.setAttribute("dir","ltr");
+
+        languageBtn.innerHTML =
+            "اضغطي هنا لو مش فاهمة بالكوري 😂";
+
+    } else {
+
+        mainMessage.innerHTML = `
+            جمعني القدر بكِ، فكنتِ أجمل أقداري ❤️
+            <br>
+            كل مولد وأنتِ عروستي 🥰
+        `;
+
+        mainMessage.setAttribute("dir","rtl");
+
+        languageBtn.innerHTML =
+            "نرجع للكوري تاني 🇰🇷😂";
+    }
+}
+</script>
+
+</body>
+</html>
